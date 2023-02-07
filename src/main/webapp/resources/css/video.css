@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* home / videoList */
+#profile{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+#goChannel{
+  text-decoration: none;
+}
+#channelName:hover{
+  color: white;
+}
+.goDetail:hover,
+#goChannel:hover,
+#profile:hover{
+  cursor: pointer;
+}
+
+/* pagination */
+.pagination {
+ 	text-align: center;
+}
+.pagination a {
+	color: black;
+	padding: 8px 14px;
+	text-decoration: none;
+}	
+.pagination a.active {
+	border-radius: 50%;
+	background-color: dodgerblue;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	border-radius: 50%;
+	background-color: #ddd;
+}
