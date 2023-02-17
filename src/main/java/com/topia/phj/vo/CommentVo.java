@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class commentVo {
+public class CommentVo {
 
 	private int commentIdx;
 	private int commentVideoIdx;

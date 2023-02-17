@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 	//회원가입하러가기
 	$("#goRegMemberBtn").on("click", function(){
-		location.href = getContextPath() + "/registerMemberForm";
+		location.href = getContextPath() +"/registerMemberForm";
 	});
 	
 	//registerMember(회원가입)
@@ -42,7 +42,7 @@ $(document).ready(function(){
 			data: $("#regMemberFrm").serialize(),
 			success: function(data){
 				if(ans){
-					if(data.resultCnt > 0){
+					if(data.registerCnt > 0){
 						alert("성공적으로 회원가입되었습니다.");
 						$("#regMemberFrm").attr("action", getContextPath() + "/login");
 					}else{
@@ -58,6 +58,31 @@ $(document).ready(function(){
 		});
 	});
 	
+	// updateMember(회원수정)
+	$("#uptMemberBtn").on("click", function(){
+		var ans = confirm("수정하시겠습니까?");
+		var memberIdx = $("#memberIdx").val();
+		console.log(memberIdx);
+		$.ajax({
+			url: getContextPath() + "/updateMember",
+			type: "POST",
+			data: $("#memberUpFrm").serialize(),
+			success: function(data){
+				if(ans){
+						alert("성공적으로 수정되었습니다.");
+						location.href= getContextPath() + "/memberList";
+					}else{
+						alert("수정하는데 실패하였습니다.");
+					}
+				
+			},
+			error: function(){  
+				alert("수정 실패");  
+			}
+		});
+	});
+	
+	
 	// deleteMember(회원삭제)
 	$("#delMemberBtn").on("click", function(){
 		var ans = confirm("삭제하시겠습니까?");
@@ -68,7 +93,7 @@ $(document).ready(function(){
 			type: "GET",
 			success: function(data){
 				if(ans){
-					if(data.resultCnt > 0){
+					if(data.cnt > 0){
 						alert("성공적으로 삭제되었습니다.");
 						location.href = getContextPath() + "/memberList";
 					}else{
@@ -82,7 +107,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	//deleteChkMember(회원선택삭제)
+//deleteChkMember(회원선택삭제)
 	$("#delChkMember").on("click", function(){
 		deleteCheckList()
 	});
@@ -111,7 +136,7 @@ function validation(){
 			var memberId = $("#inputId").val().trim();
 			if(memberId != ""){
 				$.ajax({
-					url: getContextPath() + "/idDplChk",
+					url: getContextPath() + "/loginDplChk",
 					type:"GET",
 					data: "memberId="+memberId,
 					success: function(result){
@@ -132,9 +157,7 @@ function validation(){
 	                	}
 					},
 					error:function(request,status,error){
-				        alert("code:"+request.status);
-						alert("status:"+request.responseText);
-						alert("error:"+error);
+				       
 					}       
 				});
 			}else{

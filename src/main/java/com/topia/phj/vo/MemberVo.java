@@ -11,16 +11,27 @@ public class MemberVo {
 	private String memberId;
 	private String memberPswd;
 	private String memberName;
+	private String memberEmail;
 	private String memberAuth;
 	private String memberChannelName;
 	private Date memberRegdate;
 	private Date memberUptdate;
 	private String memberRegIp;
 	private String memberUptIp;
-	private Date memberWrtDate;
+	private Date memberWrtdate;
 	private String memberImg;
 	private String memberGender;
 	private String memberDelYn;
+	
+	
+	
+	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
 	public int getRowNum() {
 		return rowNum;
 	}
@@ -87,11 +98,11 @@ public class MemberVo {
 	public void setMemberUptIp(String memberUptIp) {
 		this.memberUptIp = memberUptIp;
 	}
-	public Date getMemberWrtDate() {
-		return memberWrtDate;
+	public Date getMemberWrtdate() {
+		return memberWrtdate;
 	}
-	public void setMemberWrtDate(Date memberWrtDate) {
-		this.memberWrtDate = memberWrtDate;
+	public void setMemberWrtdate(Date memberWrtdate) {
+		this.memberWrtdate = memberWrtdate;
 	}
 	public String getMemberImg() {
 		return memberImg;
@@ -105,10 +116,10 @@ public class MemberVo {
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
-	public String getMemberDelYn() {
+	public String getmemberDelYn() {
 		return memberDelYn;
 	}
-	public void setMemberDelYn(String memberDelYn) {
+	public void setmemberDelYn(String memberDelYn) {
 		this.memberDelYn = memberDelYn;
 	}
 	

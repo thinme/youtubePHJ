@@ -17,6 +17,7 @@
 	<link href="${path}/resources/css/video.css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	
 	<style type="text/css">
 		.nav-item dropdown{
 		  height: 50px;
@@ -158,28 +159,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-	                                    <c:forEach items="${memberList}" var="member">
-	                                        <tr ondblclick="goMemberDetail(${member.memberIdx})">
+	                                    <c:forEach items="${memberList}" var="memberVo">
+	                                        <tr ondblclick="goMemberDetail(${memberVo.memberIdx})">
 	                                        	<td onclick="event.cancelBubble=true">
-													<input type="checkbox" id="${member.memberIdx}" name="check" value="${member.memberIdx}"/>
+													<input type="checkbox" id="${memberVo.memberIdx}" name="check" value="${memberVo.memberIdx}"/>
 												</td>
-	                                            <td>${member.rowNum}</td>
-	                                            <td>${member.memberId}</td>
-	                                            <td>${member.memberName}</td>
-	                                            <td>${member.memberAuth}</td>
-	                                            <td>${member.memberEmail}</td>
-	                                            <td>${member.memberGender}</td>
-	                                            <td>${member.memberChannelName}</td>
-	                                            <td>${member.memberRegdate}</td>
-	                                            <td>${member.memberUptdate}</td>
-	                                            <td>${member.memberRegIp}</td>
-	                                            <td>${member.memberUptIp}</td>
-	                                            <td>${member.memberDelYN}</td>
+	                                            <td>${memberVo.memberIdx}</td>
+	                                            <td>${memberVo.memberId}</td>
+	                                            <td>${memberVo.memberName}</td>
+	                                            <td>${memberVo.memberAuth}</td>
+	                                            <td>${memberVo.memberEmail}</td>
+	                                            <td>${memberVo.memberGender}</td>
+	                                            <td>${memberVo.memberChannelName}</td>
+	                                            <td>${memberVo.memberRegdate}</td>
+	                                            <td>${memberVo.memberUptdate}</td>
+	                                            <td>${memberVo.memberRegIp}</td>
+	                                            <td>${memberVo.memberUptIp}</td>
+	                                            <td>${memberVo.memberDelYn}</td>
 	                                        </tr>
 	                                    </c:forEach>
                                     </tbody>
                                 </table>
-                                <div class="float-end mb-2">
+                              	 <div class="float-end mb-2">
                                 	<button class="btn btn-outline-dark" id="delChkMember" type="button" style="font-size: 0.8rem;">선택삭제</button>
                                 </div>
                                 <br>
@@ -224,7 +225,7 @@
 	                </div>
 	            </footer>
 	        </div>
-	    </div>
+	    </div> 
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	    <script src="${path}/resources/component/jquery-3.3.1.min.js"></script>
 		<script src="${path}/resources/component/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

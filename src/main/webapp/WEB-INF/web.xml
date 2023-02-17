@@ -47,5 +47,10 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>	
 	<!-- 한글설정 END -->
-
+	<!-- SESSION,SERVLET객체 사용하기 -->
+	<listener>
+  		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<!-- SESSION,SERVLET객체 사용하기 END -->
+	
 </web-app>

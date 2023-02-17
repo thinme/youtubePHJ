@@ -6,7 +6,7 @@
   
 <mapper namespace="memberDao">
 
-	<resultMap type="member" id="member">
+	<resultMap type="memberVo" id="memberVo">
 		<result column="ROWNUM" property="rowNum"/>
 		<result column="MEMBER_IDX" property="memberIdx"/>
 		<result column="MEMBER_ID" property="memberId"/>
@@ -14,9 +14,10 @@
 		<result column="MEMBER_NAME" property="memberName"/>
 		<result column="MEMBER_AUTH" property="memberAuth"/>
 		<result column="MEMBER_EMAIL" property="memberEmail"/>
+		<result column="MEMBER_GENDER" property="memberGender"/>
 		<result column="MEMBER_CHANNEL_NAME" property="memberChannelName"/>
 		<result column="MEMBER_REGDATE" property="memberRegdate"/>
-		<result column="MEMBER_UPTDATE" property="meberUptdate"/>
+		<result column="MEMBER_UPTDATE" property="memberUptdate"/>
 		<result column="MEMBER_REG_IP" property="memberRegIp"/>
 		<result column="MEMBER_UPT_IP" property="memberUptIp"/>
 		<result column="MEMBER_WRTDATE" property="memberWrtdate"/>
@@ -24,5 +25,144 @@
 		<result column="MEMBER_GENDER" property="memberGender"/>
 		<result column="MEMBER_DEL_YN" property="memberDelYn"/>
 	</resultMap>
-
+	<!-- 로그인 체크 -->
+	<select id="loginChk" parameterType="HashMap" resultMap="memberVo">
+		SELECT *
+		FROM MEMBER_PHJ
+		WHERE MEMBER_ID = #{memberId} AND MEMBER_PSWD=#{memberPswd}
+	</select>
+	<!-- 실시간 id 체크 -->
+	<select id="loginDplChk" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MEMBER_PHJ
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="registerMember" parameterType="memberVo">
+		<selectKey keyProperty="memberIdx" order="BEFORE" resultType="Integer">
+			SELECT MEMBER_PHJ_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO MEMBER_PHJ(
+			MEMBER_IDX
+			, MEMBER_ID
+			, MEMBER_PSWD
+			, MEMBER_NAME
+			, MEMBER_AUTH
+			, MEMBER_EMAIL
+			, MEMBER_GENDER
+			, MEMBER_CHANNEL_NAME
+			, MEMBER_REGDATE
+			, MEMBER_WRTDATE
+			, MEMBER_REG_IP
+			, MEMBER_IMG
+		)VALUES(
+			#{memberIdx}
+			, #{memberId}
+			, #{memberPswd}
+			, #{memberName}
+			, 'user'
+			, #{memberEmail}
+			, #{memberGender}
+			, #{memberChannelName}
+			, sysdate
+			, sysdate
+			, #{memberRegIp}
+			, #{memberImg}
+		)
+	</insert>
+	<!-- 회원목록 -->
+	<select id="memberList" resultMap="memberVo">
+	/*membao.memberList.박혁진*/
+		SELECT * FROM
+			(SELECT  ROWNUM AS RN, A.*
+			FROM (SELECT	MEMBER_IDX
+						, MEMBER_ID
+						, MEMBER_PSWD
+						, MEMBER_NAME
+						, MEMBER_AUTH
+						, MEMBER_EMAIL
+						, MEMBER_GENDER
+						, MEMBER_CHANNEL_NAME
+						, MEMBER_REGDATE
+						, MEMBER_UPTDATE
+						, MEMBER_WRTDATE
+						, MEMBER_REG_IP
+						, MEMBER_IMG
+						, MEMBER_DEL_YN  
+			FROM MEMBER_PHJ
+			WHERE 1=1
+			<if test="memberSearchWord != null and memberSearchWord !=''">
+				AND MEMBER_ID LIKE '%${memberSearchWord}%'
+				or	MEMBER_NAME LIKE '%${memberSearchWord}%'
+				or  MEMBER_EMAIL LIKE '%${memberSearchWord}%'
+				or  MEMBER_CHANNEL_NAME LIKE'%${memberSearchWord}%'
+			</if>
+			ORDER BY MEMBER_IDX DESC) A)
+			<![CDATA[
+			   WHERE RN BETWEEN (#{criteria.page} - 1) * #{criteria.perPageNum} + 1 AND #{criteria.page} * #{criteria.perPageNum}
+			]]>
+	</select>
+	<!-- 회원전체수체크 -->
+	<select id="memberListCount" resultType="Integer" >
+	/*membao.memberListCount.박혁진*/
+		SELECT 
+			COUNT(DISTINCT MEMBER_IDX)
+	    FROM MEMBER_PHJ
+		WHERE 1=1
+	</select>
+	<!-- 회원상세보기 -->
+	<select id="memberDetail" resultType="memberVo" parameterType="int">
+	/*membao.memberDetail.박혁진*/
+		SELECT MEMBER_IDX
+			, MEMBER_ID
+			, MEMBER_PSWD
+			, MEMBER_NAME
+			, MEMBER_GENDER
+			, MEMBER_EMAIL
+			, MEMBER_CHANNEL_NAME
+			, MEMBER_AUTH
+			, MEMBER_REGDATE
+			, MEMBER_WRTDATE
+			, MEMBER_UPTDATE
+			, MEMBER_REG_IP
+			, MEMBER_UPT_IP
+			, MEMBER_IMG
+			, MEMBER_DEL_YN
+		FROM MEMBER_PHJ
+		WHERE 1=1
+		AND MEMBER_IDX = #{memberIdx}
+	</select>
+	<!-- 회원수정 -->
+	<update id="updateMember" parameterType="memberVo">
+	/*membao.updateMember.박혁진*/
+		UPDATE MEMBER_PHJ
+		SET 	
+				  MEMBER_ID = #{memberId}
+				, MEMBER_PSWD = #{memberPswd}
+				, MEMBER_NAME = #{memberName}
+				, MEMBER_AUTH = #{memberAuth}
+				, MEMBER_GENDER = #{memberGender}
+				, MEMBER_EMAIL = #{memberEmail}
+				, MEMBER_CHANNEL_NAME = #{memberChannelName}
+				, MEMBER_UPTDATE = sysdate
+				, MEMBER_UPT_IP = #{memberUptIp}
+				, MEMBER_IMG = #{memberImg}
+				, MEMBER_DEL_YN = #{memberDelYn}
+		WHERE
+			MEMBER_IDX = #{memberIdx}
+	</update>
+	
+	<delete id="deleteMember" parameterType="int">
+	/*membao.deleteMember.박혁진*/
+		DELETE FROM MEMBER_PHJ
+		WHERE MEMBER_IDX = #{memberIdx}
+	</delete>
+	
+	<delete id="deleteChkMember" parameterType="Hashmap">
+	/*membao.deleteChkMember.박혁진*/
+		DELETE FROM MEMBER_PHJ
+		WHERE MEMBER_IDX = #{memberIdx}
+	</delete>
 </mapper>

@@ -17,6 +17,7 @@
 	<link href="${path}/resources/css/video.css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	
 	<style type="text/css">
 		.nav-item dropdown{
 		  height: 50px;
@@ -143,8 +144,8 @@
                             	<div class="row d-flex align-items-center justify-content-center">
                             		<div class="px-5-mod text-center">
 	                            		<img class="mb-4" id="profile-img" src="${path}/resources/assets/img/dog.jpg">
-		                                <form id="memberFrm" method="post">
-		                                <input type="hidden" id="memberIdx" value="${memDetail.memberIdx}">
+		                                <form id="memberUpFrm" method="post">
+		                                <input type="hidden" id="memberIdx" name="memberIdx" value="${memDetail.memberIdx}">
 			                                <div class="row">
 			                                 <div class="col-md-6">
 			                                  	<div class="form-floating mt-2 mb-4">
@@ -191,8 +192,8 @@
 			                                    <label for="inputChannelName">Channel Name</label>
 			                                </div>
 			                                <div class="d-flex align-items-center justify-content-end">
-			                                    <button class="btn btn-outline-primary me-2" id="uptMemberBtn">수정</button>
-			                                    <button class="btn btn-outline-primary" id="delMemberBtn">삭제</button>
+			                                    <button class="btn btn-outline-primary me-2" id="uptMemberBtn" type="button">수정</button>
+			                                    <button class="btn btn-outline-primary" id="delMemberBtn" type="button">삭제</button>
 			                                </div>
 			                            </form>
                             		</div>

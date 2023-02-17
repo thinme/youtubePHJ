@@ -9,7 +9,7 @@ public class Paging {
 	private boolean prev;
 	private boolean next;
 	
-	private Criteria cri; 
+	private Criteria criteria; 
 	
 	public int getTotalCount() {
 		return totalCount;
@@ -21,18 +21,18 @@ public class Paging {
 	}
 	
 	private void pagigData() {
-		endPage = (int)(Math.ceil(cri.getPage()/(double) displayPageNum)*displayPageNum);
+		endPage = (int)(Math.ceil(criteria.getPage()/(double) displayPageNum)*displayPageNum);
 		
 		startPage = (endPage-displayPageNum) + 1;
 		
-		int tempEndPage = (int)(Math.ceil(totalCount/(double)cri.getPerPageNum()));
+		int tempEndPage = (int)(Math.ceil(totalCount/(double)criteria.getPerPageNum()));
 		if(endPage > tempEndPage){
 			endPage = tempEndPage;
 		}
 		
 		prev = startPage ==1 ? false : true;
 		
-		next = endPage*cri.getPerPageNum() >= totalCount ? false : true;
+		next = endPage*criteria.getPerPageNum() >= totalCount ? false : true;
 	}
 
 	public int getDisplayPageNum() {
@@ -75,18 +75,18 @@ public class Paging {
 		this.next = next;
 	}
 
-	public Criteria getCri() {
-		return cri;
+	public Criteria getcriteria() {
+		return criteria;
 	}
 
-	public void setCri(Criteria cri) {
-		this.cri = cri;
+	public void setCriteria(Criteria criteria) {
+		this.criteria = criteria;
 	}
 
 	@Override
 	public String toString() {
 		return "Paging [totalCount=" + totalCount + ", displayPageNum=" + displayPageNum + ", startPage=" + startPage
-				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", cri=" + cri + "]";
+				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", criteria=" + criteria + "]";
 	}
 
 	

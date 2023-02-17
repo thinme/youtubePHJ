@@ -8,10 +8,10 @@
 	</settings>
 	
 	<typeAliases>	
-	<typeAlias type="com.topia.phj.vo.MemberVo" alias="member"/>
-	<typeAlias type="com.topia.phj.vo.VideoVo" alias="video"/>
-	<typeAlias type="com.topia.phj.vo.Criteria" alias="cri"/>
-	<typeAlias type="com.topia.phj.vo.CommentVo" alias="comment"/> 
+	<typeAlias type="com.topia.phj.vo.MemberVo" alias="memberVo"/>
+	<typeAlias type="com.topia.phj.vo.VideoVo" alias="videoVo"/>
+	<typeAlias type="com.topia.phj.vo.Criteria" alias="criVo"/>
+	<typeAlias type="com.topia.phj.vo.CommentVo" alias="commentVo"/> 
 
 	</typeAliases>
 	

@@ -85,7 +85,7 @@
 	                    	</a>
 	                    </li>
 	                    <li><hr class="dropdown-divider"/></li>
-	                    <li><a class="dropdown-item" href="#!"><i class='bx bxs-user-account'></i>&nbsp;계정관리</a></li>
+	                    <li><a class="dropdown-item" ondblclick="goMemberDetail(${sesMemberIdx})"><i class='bx bxs-user-account'></i>&nbsp;계정관리</a></li>
 	                    <li><a class="dropdown-item" href="#!"><i class='bx bx-slideshow'></i>&nbsp;내 채널</a></li>
 	                    <li><hr class="dropdown-divider"/></li>
 	                    <li><a class="dropdown-item" href="${path}/logout"><i class='bx bx-log-in' ></i>&nbsp;로그아웃</a></li>

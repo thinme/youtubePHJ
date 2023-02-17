@@ -4,12 +4,15 @@ import java.sql.Date;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.topia.phj.utill.YouTubeUtil;
+
 public class VideoVo {
 	private int rowNum;
 	private int videoIdx;
 	private String videoTitle;
 	private String videoContents;
 	private String videoIdentifiedId;
+	private String videoRegdate_change;
 	private Date videoWrtdate;
 	private Date videoRegdate;
 	private Date videoUptdate;
@@ -18,6 +21,14 @@ public class VideoVo {
 	private String videoUptIp;
 	private int videoViewCnt;
 	
+	public String getVideoRegdate_change() {
+		return videoRegdate_change;
+	}
+	
+	
+	public void setVideoRegdate_change(Date videoRegdate_change) {
+		this.videoRegdate_change = YouTubeUtil.calculateTime(videoRegdate);
+	}
 	
 	public int getRowNum() {
 		return rowNum;

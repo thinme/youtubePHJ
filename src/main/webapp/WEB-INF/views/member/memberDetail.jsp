@@ -17,6 +17,7 @@
 	<link href="${path}/resources/css/video.css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<script src="ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
 		.nav-item dropdown{
 		  height: 50px;
@@ -147,7 +148,7 @@
 			                                <div class="row">
 			                                 <div class="col-md-6">
 			                                  	<div class="form-floating mt-2 mb-4">
-				                                    <input class="form-control" id="inputId" name="memberId" type="text" value="${memDetail.memberId}" placeholder="아이디를 입력하세요" readonly="readonly"/>
+				                                    <input class="form-control" id="inputId" name="memberId" type="text" value="${memDetail.memberId}" readonly="readonly"/>
 				                                    <label for="inputId">ID</label>
 			                                	</div>
 			                                 </div>
@@ -161,7 +162,7 @@
 			                                <div class="row">
 			                                 <div class="col-md-6">
 			                                  <div class="form-floating mb-4">
-			                                  	<input class="form-control" id="inputName" name="memberName" type="text" value="${memDetail.memberName}" placeholder="이름을 입력하세요" readonly="readonly"/>
+			                                  	<input class="form-control" id="inputName" name="memberName" type="text" value="${memDetail.memberName}" readonly="readonly"/>
 			                                    <label for="inputName">Name</label>
 			                                  </div>
 			                                 </div>
@@ -173,16 +174,16 @@
 			                                 </div>
 			                                </div>
 			                                <div class="form-floating mb-4">
-			                                    <input class="form-control" id="inputEmail" name="memberEmail" type="text" value="${memDetail.memberEmail}" placeholder="이메일을 입력하세요" readonly="readonly"/>
+			                                    <input class="form-control" id="inputEmail" name="memberEmail" type="text" value="${memDetail.memberEmail}"  readonly="readonly"/>
 			                                    <label for="inputEmail">Email</label>
 			                                </div>
 			                                <div class="form-floating mb-4">
-			                                    <input class="form-control" id="inputChannelName" name="memberChannelName" type="text" value="${memDetail.memberChannelName}" placeholder="채널명을 입력하세요" readonly="readonly"/>
+			                                    <input class="form-control" id="inputChannelName" name="memberChannelName" type="text" value="${memDetail.memberChannelName}"  readonly="readonly"/>
 			                                    <label for="inputChannelName">Channel Name</label>
 			                                </div>
 			                                <div class="d-flex align-items-center justify-content-end">
-			                                    <button class="btn btn-outline-primary me-2" onclick="goUpdateMember(${memDetail.memberIdx})">수정</button>
-			                                    <button class="btn btn-outline-primary" id="delMemberBtn">삭제</button>
+			                                    <button type="button" class="btn btn-outline-primary me-2" onclick="goUpdateMember(${memDetail.memberIdx})">수정</button>
+			                                    <button  type="button" class="btn btn-outline-primary" id="delMemberBtn">삭제</button>
 			                                </div>
 			                            </form>
                             		</div>

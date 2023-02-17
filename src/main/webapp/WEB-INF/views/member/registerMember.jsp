@@ -15,6 +15,7 @@
 	<link href="${path}/resources/css/styles.css" rel="stylesheet" />
 	<script src="${path}/resources/component/jquery-3.3.1.min.js"></script>
 	<script src="${path}/resources/component/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
 		.nav-item dropdown{
 			height: 50px;

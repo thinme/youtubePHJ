@@ -19,6 +19,7 @@
     <script src="${path}/resources/js/scripts.js"></script>
     <script src="${path}/resources/js/video/video.js"></script>
     <script src="${path}/resources/js/util.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
 		.nav-item dropdown{
 			height: 50px;

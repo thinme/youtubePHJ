@@ -6,7 +6,7 @@
   
 <mapper namespace="videoDao">
 
-	<resultMap type="video" id="video">
+	<resultMap type="videoVo" id="videoVo">
 		<result column="ROWNUM" property="rowNum"/>
 		<result column="VIDEO_IDX" property="VideoIdx"/>
 		<result column="VIDEO_TITLE" property="VideoTitle"/>
@@ -22,7 +22,7 @@
 		<collection property="member" resultMap="member"></collection>
 	</resultMap>
 	
-	<resultMap type="member" id="member">
+	<resultMap type="memberVo" id="memberVo">
 		<result column="ROWNUM" property="rowNum"/>
 		<result column="MEMBER_IDX" property="memberIdx"/>
 		<result column="MEMBER_ID" property="memberId"/>
@@ -32,14 +32,14 @@
 		<result column="MEMBER_EMAIL" property="memberEmail"/>
 		<result column="MEMBER_CHANNEL_NAME" property="memberChannelName"/>
 		<result column="MEMBER_REGDATE" property="memberRegdate"/>
-		<result column="MEMBER_UPTDATE" property="meberUptdate"/>
+		<result column="MEMBER_UPTDATE" property="memberUptdate"/>
 		<result column="MEMBER_REG_IP" property="memberRegIp"/>
 		<result column="MEMBER_UPT_IP" property="memberUptIp"/>
 		<result column="MEMBER_WRTDATE" property="memberWrtdate"/>
 		<result column="MEMBER_IMG" property="memberImg"/>
 	</resultMap>
 	
-	<resultMap type="comment" id="comment">
+	<resultMap type="commentVo" id="commentVo">
 		<result column="COMMENT_IDX" property="commmentIdx"/>
 		<result column="COMMENT_VIDEO_IDX" property="commmentVideoIdx"/>
 		<result column="COMMENT_CONTENTS" property="commmentContents"/>
@@ -53,4 +53,91 @@
 		<result column="COMMENT_REF_IDX" property="commmentRefIdx"/>
 		<collection property="member" resultMap="member"></collection>
 	</resultMap>
+	
+	<select id="videoList" resultType="videoVo">
+		/*videoDao.videoList.박혁진*/
+		 SELECT * FROM
+			(SELECT ROWNUM AS RN, a.*
+			 FROM (SELECT v.video_idx,
+			 			  CASE WHEN lengthb(v.video_title) > 100 THEN SUBSTR(v.video_title, 0, 38) || '...'
+						  ELSE v.video_title
+						  END video_title,
+			 			  v.video_contents,
+			 			  v.video_identified_id,
+			 			  v.video_regdate,
+			 			  v.video_wrtdate,
+			 			  v.video_uptdate,
+			 			  v.video_reg_id,
+			 			  v.video_reg_ip,
+			 			  v.video_upt_ip,
+			 			  v.video_view_cnt,
+			 			  m.member_channel_name,
+			 			  m.member_img
+				   FROM   VIDEO_PHJ v, MEMBER_PHJ m
+				   WHERE  1=1
+				   AND    v.video_reg_id = m.member_id(+)
+				   ORDER BY video_idx DESC ) a)
+		<![CDATA[
+	    WHERE RN BETWEEN (#{criteria.page} - 1) * #{criteria.perPageNum} + 1 AND #{criteria.page} * #{criteria.perPageNum}
+		]]>
+	</select>
+	
+	<select id="videoListCnt" resultType="int">
+	/*videoDao.videoListCnt.박혁진*/
+		SELECT  COUNT(DISTINCT video_idx)
+		FROM	VIDEO_PHJ
+		WHERE	1=1
+	</select>
+	
+	<insert id="registerVideo" parameterType="videoVo">
+	/*videoDao.registerVideo.박혁진*/
+		INSERT INTO VIDEO_PHJ(
+			   video_idx,
+			   video_title,
+			   video_contents,
+			   video_identified_id,
+			   video_regdate,
+			   video_wrtdate,
+			   video_reg_id,
+			   video_reg_ip
+			   )
+		VALUES(
+			   VIDEO_PHJ_SEQ.NEXTVAL, 
+			   #{videoTitle},
+			   #{videoContents},
+			   #{videoIdentifiedId},
+			   sysdate,
+			   sysdate,
+			   #{videoRegId},
+			   #{videoRegIp}
+			  )
+	</insert>
+	
+	<select id="videoDetail" parameterType="int" resultType="videoVo">
+	/*videoDao.videoDetail.박혁진*/
+		SELECT v.video_idx,
+ 			   v.video_title,
+ 			   v.video_contents,
+ 			   v.video_identified_id,
+ 			   v.video_regdate,
+ 			   v.video_wrtdate,
+ 			   v.video_uptdate,
+ 			   v.video_reg_id,
+ 			   v.video_reg_ip,
+ 			   v.video_upt_ip,
+ 			   v.video_view_cnt,
+ 			   m.member_channel_name,
+ 			   m.member_img
+		FROM   VIDEO_PHJ v, MEMBER_PHJ m
+		WHERE  1=1 
+		AND    v.video_reg_id = m.member_id(+)
+		AND    VIDEO_IDX = #{videoIdx}
+	</select>
+	
+	<update id="videoViewCnt" parameterType="int">
+	/*videoDao.videoViewCnt.박혁진*/
+		UPDATE VIDEO_PHJ
+		SET    video_view_cnt = video_view_cnt + 1
+		WHERE  video_idx = #{videoIdx} 
+	</update>
 </mapper>

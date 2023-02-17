@@ -13,9 +13,11 @@
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 	<link href="${path}/resources/css/styles.css" rel="stylesheet" />
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-	<script src="${path}/resources/component/jquery-3.3.1.min.js"></script>
-	<script src="${path}/resources/component/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	
+    <script src="${path}/resources/component/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/component/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
     <script src="${path}/resources/js/scripts.js"></script>
     <script src="${path}/resources/js/video/video.js"></script>
     <script src="${path}/resources/js/util.js"></script>
@@ -129,7 +131,7 @@
 	                                    <label for="videoContents" id="contents-label">Contents</label>
 	                                </div>
 	                                <div class="d-flex align-items-center justify-content-end mb-0">
-	                                    <button class="btn btn-primary" id="regVideoBtn">등록</button>
+	                                    <button class="btn btn-primary" id="regVideoBtn" type="button">등록</button>
 	                                </div>
 	                            </form>
 			                </div>
@@ -150,6 +152,6 @@
 	            </footer>
 	        </div>
 	    </div>
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	</body>
 </html>

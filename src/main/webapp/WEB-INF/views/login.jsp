@@ -14,6 +14,7 @@
 	<link href="${path}/resources/css/styles.css" rel="stylesheet" />
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
 		.nav-item dropdown{
 			height: 50px;
@@ -52,8 +53,8 @@
                                     <div class="card-body">
                                         <form id="loginFrm" method="post">
                                             <div class="form-floating mt-2 mb-4">
-                                                <input class="form-control" id="inputEmail" name="memberId" type="text" placeholder="name@example.com" />
-                                                <label for="inputEmail">ID</label>
+                                                <input class="form-control" id="memberId" name="memberId" type="text"/>
+                                                <label for="memberId">ID</label>
                                             </div>
                                             <div class="form-floating mb-4">
                                                 <input class="form-control" id="inputPassword" name="memberPswd" type="password" placeholder="Password" />
